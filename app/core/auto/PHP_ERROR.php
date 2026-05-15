@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace app\auto;
+namespace app\core\auto;
 
 use Error;
 use ErrorException;

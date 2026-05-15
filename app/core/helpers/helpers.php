@@ -1,7 +1,7 @@
 <?php
 
-use app\configs\Config;
-use app\database\Database;
+use app\core\configs\Config;
+use app\core\database\Database;
 use app\errors\Errors;
 
 function MakeSecureHash($password)
@@ -66,8 +66,8 @@ function download($path, $name)
 function require_view($path)
 {
 
-    if (file_exists(Config::APPROOT() . "/resources/views/" . periodPath($path) . ".php")) {
-        require_once Config::APPROOT() . "/resources/views/" . periodPath($path) . ".php";
+    if (file_exists(Config::APPROOT() . "/views/" . periodPath($path) . ".php")) {
+        require_once Config::APPROOT() . "/views/" . periodPath($path) . ".php";
     } else {
         Errors::_404_();
     }

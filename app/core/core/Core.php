@@ -1,8 +1,8 @@
 <?php
 
-namespace app\core;
+namespace app\core\core;
 
-use app\configs\Config;
+use app\core\configs\Config;
 use app\errors\Errors;
 use app\routes\Web;
 
@@ -26,7 +26,8 @@ class Core extends Web
                 $path = '';
             }
         } else {
-            Errors::_500_();
+            http_response_code(500);
+            exit;
         }
 
         $method = $_SERVER['REQUEST_METHOD'];
@@ -59,10 +60,12 @@ class Core extends Web
                             $controller->{$info['method']}($data === null ? null : htmlspecialchars(urldecode($data)));
                         }
                     } else {
-                        Errors::_404_();
+                        http_response_code(404);
+                        exit;
                     }
                 } else {
-                    Errors::_404_();
+                    http_response_code(404);
+                    exit;
                 }
                 break;
             }

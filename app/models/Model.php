@@ -2,7 +2,7 @@
 
 namespace app\models;
 
-use app\database\Database;
+use app\core\database\Database;
 use app\errors\Errors;
 
 class Model

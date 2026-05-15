@@ -1,6 +1,6 @@
 <?php
 
-namespace app\database;
+namespace app\core\database;
 
 use app\configs\DB;
 use app\errors\Errors;

@@ -1,6 +1,6 @@
 <?php
 
-namespace app\configs;
+namespace app\core\configs;
 
 class Config
 {
@@ -18,10 +18,10 @@ class Config
     }
     static public  function PUBLICROOT()
     {
-        return dirname(dirname(__DIR__)) . "/public/";
+        return dirname((__DIR__), 3) . "/public/";
     }
     static public  function APPROOT()
     {
-        return dirname(__DIR__) . "/";
+        return dirname(__DIR__, 2) . "/";
     }
 }

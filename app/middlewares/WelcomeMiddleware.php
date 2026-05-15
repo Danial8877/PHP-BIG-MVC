@@ -1,11 +1,11 @@
 <?php
 namespace app\middlewares;
 
-class HomeMiddleware
+class WelcomeMiddleware
 {
     public function handle()
     {
-        dd("Middleware");
+        // Your Code
         return true;
     }
 }
