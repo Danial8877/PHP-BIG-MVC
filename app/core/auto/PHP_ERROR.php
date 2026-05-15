@@ -8,8 +8,20 @@ use Error;
 use ErrorException;
 use Throwable;
 
+function WEB()
+{
+    $host = $_SERVER['HTTP_HOST'] ?? $_SERVER['SERVER_NAME'] ?? '';
+    $devDomains = ['localhost', '127.0.0.1', 'dev.', 'test.', 'staging.'];
 
-if ($_ENV["WEB"] === "off") {
+    foreach ($devDomains as $devDomain) {
+        if (strpos($host, $devDomain) !== false) {
+            return 'off';
+        }
+    }
+
+    return 'on';
+}
+if (WEB() === "off") {
 
 
     ini_set('display_errors', '1');

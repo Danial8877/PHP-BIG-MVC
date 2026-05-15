@@ -6,15 +6,15 @@ class Config
 {
     static public  function WEB()
     {
-        return $_ENV["WEB"];
+        return WEB();
     }
     static public  function PROJECTNAME()
     {
-        return $_ENV["PROJECTNAME"];
+        return trim(dirname($_SERVER['SCRIPT_NAME'],2), '/');
     }
     static public  function URLROOT()
     {
-        return $_ENV["URL"];
+        return getCurrentUrl();
     }
     static public  function PUBLICROOT()
     {

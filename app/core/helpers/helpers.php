@@ -283,6 +283,30 @@ function tableExport(string $tableName): void
     }
 }
 
+function getCurrentUrl()
+{
+    $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off')
+        ? "https://"
+        : "http://";
+    $host = $_SERVER['HTTP_HOST'];
+    $uri = $_SERVER['REQUEST_URI'];
+    return $protocol . $host . $uri;
+}
+
+function WEB()
+{
+    $host = $_SERVER['HTTP_HOST'] ?? $_SERVER['SERVER_NAME'] ?? '';
+    $devDomains = ['localhost', '127.0.0.1', 'dev.', 'test.', 'staging.'];
+
+    foreach ($devDomains as $devDomain) {
+        if (strpos($host, $devDomain) !== false) {
+            return 'off';
+        }
+    }
+
+    return 'on';
+}
+
 function generateToken(): string
 {
     return $_SESSION['csrf_token'] ??= bin2hex(random_bytes(32));

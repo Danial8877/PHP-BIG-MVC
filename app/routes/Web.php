@@ -1,13 +1,14 @@
 <?php
 
 namespace app\routes;
+
 use app\core\routes\Route;
 
 class Web
 {
     public function routes()
     {
-        Route::Get("/", "WelcomeController", "index", "WelcomeMiddleware");
+        Route::Get("/", "ExampleController", "index", "ExampleMiddleware");
         return Route::$routes;
     }
 }

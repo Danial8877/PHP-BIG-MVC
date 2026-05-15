@@ -15,10 +15,22 @@ class Core extends Web
         $requestUri = $_SERVER['REQUEST_URI'] ?? '/';
         $normalizedUri = preg_replace('#/+#', '/', $requestUri);
         $normalizedUri = str_replace('../', '', $normalizedUri);
+        function WEB()
+        {
+            $host = $_SERVER['HTTP_HOST'] ?? $_SERVER['SERVER_NAME'] ?? '';
+            $devDomains = ['localhost', '127.0.0.1', 'dev.', 'test.', 'staging.'];
 
-        if ($_ENV["WEB"] === "on") {
+            foreach ($devDomains as $devDomain) {
+                if (strpos($host, $devDomain) !== false) {
+                    return 'off';
+                }
+            }
+
+            return 'on';
+        }
+        if (WEB() === "on") {
             $path = trim(parse_url($normalizedUri, PHP_URL_PATH) ?: '', "/");
-        } elseif ($_ENV["WEB"] === "off") {
+        } elseif (WEB() === "off") {
             $parsedPath = parse_url($normalizedUri, PHP_URL_PATH);
             if ($parsedPath !== null) {
                 $path = trim(str_replace(Config::PROJECTNAME() . "/", "", $parsedPath), "/");

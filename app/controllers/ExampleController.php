@@ -4,7 +4,7 @@ namespace app\controllers;
 
 use app\core\libraries\Controller;
 
-class WelcomeController extends Controller
+class ExampleController extends Controller
 {
     public function index()
     {
